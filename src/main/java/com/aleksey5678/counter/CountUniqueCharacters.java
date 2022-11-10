@@ -7,19 +7,20 @@ public class CountUniqueCharacters {
     private static final int ONE = 1;
     private static final int ZERO = 0;
 
-    public Map<Character, Integer> count(String ourSentence) {//rename
-       Map<Character, Integer> quantityOfUniqueSymbols = new HashMap<>();//rename
+    public Map<Character, Integer> showUniqueSymbolsAndTheirQuantity(String ourSentence) {
+
+       Map<Character, Integer> storageOfUniqueSymbolsAndTheirQuantity = new HashMap<>();
 
         for (int indexOfCharacter = ZERO; indexOfCharacter < ourSentence.length(); indexOfCharacter++) {
             char characters = ourSentence.charAt(indexOfCharacter);
-            if (!quantityOfUniqueSymbols.containsKey(characters)) {
-                quantityOfUniqueSymbols.put(characters, ONE);
+            if (!storageOfUniqueSymbolsAndTheirQuantity.containsKey(characters)) {
+                storageOfUniqueSymbolsAndTheirQuantity.put(characters, ONE);
             } else {
-                Integer integer = quantityOfUniqueSymbols.get(characters);
-                integer++;
-                quantityOfUniqueSymbols.put(characters, integer);
+                Integer quantityOfUniqueSymbols = storageOfUniqueSymbolsAndTheirQuantity.get(characters);
+                quantityOfUniqueSymbols++;
+                storageOfUniqueSymbolsAndTheirQuantity.put(characters, quantityOfUniqueSymbols);
             }
         }
-        return quantityOfUniqueSymbols;
+        return storageOfUniqueSymbolsAndTheirQuantity;
     }
 }
