@@ -1,7 +1,10 @@
-package com.aleksey5678.counter;
+package com.aleksey5678.cache;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Map;
 
@@ -10,17 +13,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
 class CacheTest {
+    @Mock
+    private Map<String, String> storageMock;
 
-    private final Map<String, String> mock = Mockito.mock(Map.class);
-
-    Cache newCache = new Cache(mock);
+    @InjectMocks
+    Cache newCache;
     private final String ourSentence = "a";
     private final String resultOfCalculations = "a - 1";
 
     @Test
-    void isKeyHere() {
-        when(mock.containsKey(ourSentence)).thenReturn(true);
+    void shouldReturnTrueIfKeyIsHere() {
+        when(storageMock.containsKey(ourSentence)).thenReturn(true);
 
         boolean isHere = newCache.isKeyHere(ourSentence);
 
@@ -28,8 +33,8 @@ class CacheTest {
     }
 
     @Test
-    void getCachedValue() {
-        when(mock.get(ourSentence)).thenReturn(resultOfCalculations);
+    void shouldReturnCachedValueIfKeyIsInCache() {
+        when(storageMock.get(ourSentence)).thenReturn(resultOfCalculations);
 
         String cachedValue = newCache.getCachedValue(ourSentence);
 
@@ -37,8 +42,8 @@ class CacheTest {
     }
 
     @Test
-    void putInCache() {
+    void shouldPutKeyAndValueInCache() {
         newCache.putInCache(ourSentence, resultOfCalculations);
-        verify(mock).put(ourSentence, resultOfCalculations);
+        verify(storageMock).put(ourSentence, resultOfCalculations);
     }
 }

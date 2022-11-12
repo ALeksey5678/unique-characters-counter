@@ -1,9 +1,9 @@
-package com.aleksey5678.counter;
+package com.aleksey5678.counter_string_modifier;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class CountUniqueCharacters {
+public class UniqueCharactersCounter {
     private static final int ONE = 1;
     private static final int ZERO = 0;
 

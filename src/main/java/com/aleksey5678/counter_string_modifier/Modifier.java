@@ -1,8 +1,8 @@
-package com.aleksey5678.counter;
+package com.aleksey5678.counter_string_modifier;
 
 import java.util.Map;
 
-public class OutputModifier {
+public class Modifier {
     public String modify(Map<Character, Integer> quantityOfUniqueSymbols) {
         StringBuilder stringBuilder = new StringBuilder();
         quantityOfUniqueSymbols.forEach((character, quantity) ->
