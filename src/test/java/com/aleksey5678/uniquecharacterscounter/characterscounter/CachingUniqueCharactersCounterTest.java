@@ -26,7 +26,7 @@ class CachingUniqueCharactersCounterTest {
     private CalculationResultCache calculationResultCacheMock;
 
     @InjectMocks
-   private CachingUniqueCharactersCounter cachingUniqueCharactersCounter;
+    private CachingUniqueCharactersCounter cachingUniqueCharactersCounter;
 
     private final String sentence = "a";
     private final String expected = "a - 1";

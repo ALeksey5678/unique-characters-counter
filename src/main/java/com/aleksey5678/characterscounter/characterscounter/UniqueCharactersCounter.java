@@ -8,11 +8,11 @@ public class UniqueCharactersCounter {
 
     public Map<Character, Integer> calculateUniqueSymbolsAndTheirQuantity(String sentence) {
 
-        Map<Character, Integer> characterToInteger = new HashMap<>();
+        Map<Character, Integer> numberOfCharacterRepetitionsByUniqueCharacter = new HashMap<>();
         for (char characters : sentence.toCharArray()) {
-            characterToInteger.computeIfPresent(characters, (character, integer) -> integer+ONE);
-            characterToInteger.putIfAbsent(characters, ONE);
+            numberOfCharacterRepetitionsByUniqueCharacter.computeIfPresent(characters, (character, integer) -> integer + ONE);
+            numberOfCharacterRepetitionsByUniqueCharacter.putIfAbsent(characters, ONE);
         }
-        return characterToInteger;
+        return numberOfCharacterRepetitionsByUniqueCharacter;
     }
 }

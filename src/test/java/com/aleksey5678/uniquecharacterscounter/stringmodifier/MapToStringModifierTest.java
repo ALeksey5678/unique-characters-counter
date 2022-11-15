@@ -14,11 +14,11 @@ class MapToStringModifierTest {
     void shouldModifyValue() {
         String expectedResult = "a - 1";
 
-        Map<Character, Integer> map = new HashMap<>();
-        map.put('a', 1);
+        Map<Character, Integer> quantityOfSymbolsRepetitionsBySymbol = new HashMap<>();
+        quantityOfSymbolsRepetitionsBySymbol.put('a', 1);
         MapToStringModifier mapToStringModifier = new MapToStringModifier();
 
-        String modify = mapToStringModifier.modify(map);
+        String modify = mapToStringModifier.modify(quantityOfSymbolsRepetitionsBySymbol);
 
         assertEquals(expectedResult, modify);
 

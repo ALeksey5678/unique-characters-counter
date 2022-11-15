@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class CalculationResultCacheTest {
     @Mock
-    private Map<String, String> storageMock;
+    private Map<String, String> resultOfCalculationsBySentenceMock;
 
     @InjectMocks
     CalculationResultCache newCalculationResultCache;
@@ -26,7 +26,7 @@ class CalculationResultCacheTest {
 
     @Test
     void shouldReturnTrueIfCached() {
-        when(storageMock.containsKey(sentence)).thenReturn(true);
+        when(resultOfCalculationsBySentenceMock.containsKey(sentence)).thenReturn(true);
 
         boolean cached = newCalculationResultCache.isCached(sentence);
 
@@ -35,7 +35,7 @@ class CalculationResultCacheTest {
 
     @Test
     void shouldReturnCachedValueIfKeyIsInCache() {
-        when(storageMock.get(sentence)).thenReturn(resultOfCalculations);
+        when(resultOfCalculationsBySentenceMock.get(sentence)).thenReturn(resultOfCalculations);
 
         String cachedValue = newCalculationResultCache.getCachedValue(sentence);
 
@@ -45,6 +45,6 @@ class CalculationResultCacheTest {
     @Test
     void shouldPutKeyAndValueInCache() {
         newCalculationResultCache.save(sentence, resultOfCalculations);
-        verify(storageMock).put(sentence, resultOfCalculations);
+        verify(resultOfCalculationsBySentenceMock).put(sentence, resultOfCalculations);
     }
 }

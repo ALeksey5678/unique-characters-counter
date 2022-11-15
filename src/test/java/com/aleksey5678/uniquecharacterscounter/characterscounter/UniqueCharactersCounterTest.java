@@ -14,13 +14,13 @@ class UniqueCharactersCounterTest {
     @Test
     void shouldReturnUniqueSymbolsAndTheirQuantity() {
         String sentence = "ababcb";
-        Map<Character, Integer> map = new HashMap<>();
-        map.put('a', 2);
-        map.put('b', 3);
-        map.put('c', 1);
+        Map<Character, Integer> quantityOfSymbolsRepetitionsBySymbol = new HashMap<>();
+        quantityOfSymbolsRepetitionsBySymbol.put('a', 2);
+        quantityOfSymbolsRepetitionsBySymbol.put('b', 3);
+        quantityOfSymbolsRepetitionsBySymbol.put('c', 1);
 
         Map<Character, Integer> actual = uniqueCharactersCounter.calculateUniqueSymbolsAndTheirQuantity(sentence);
 
-        assertEquals(map, actual);
+        assertEquals(quantityOfSymbolsRepetitionsBySymbol, actual);
     }
 }
