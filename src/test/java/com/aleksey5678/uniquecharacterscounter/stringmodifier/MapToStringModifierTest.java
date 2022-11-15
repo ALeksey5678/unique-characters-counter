@@ -1,5 +1,6 @@
-package com.aleksey5678.counter_string_modifier;
+package com.aleksey5678.uniquecharacterscounter.stringmodifier;
 
+import com.aleksey5678.characterscounter.stringmodifier.MapToStringModifier;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -7,7 +8,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ModifierTest {
+class MapToStringModifierTest {
 
     @Test
     void shouldModifyValue() {
@@ -15,9 +16,9 @@ class ModifierTest {
 
         Map<Character, Integer> map = new HashMap<>();
         map.put('a', 1);
-        Modifier modifier = new Modifier();
+        MapToStringModifier mapToStringModifier = new MapToStringModifier();
 
-        String modify = modifier.modify(map);
+        String modify = mapToStringModifier.modify(map);
 
         assertEquals(expectedResult, modify);
 

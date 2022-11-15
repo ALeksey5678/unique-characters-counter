@@ -1,5 +1,6 @@
-package com.aleksey5678.counter_string_modifier;
+package com.aleksey5678.uniquecharacterscounter.characterscounter;
 
+import com.aleksey5678.characterscounter.characterscounter.UniqueCharactersCounter;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -12,12 +13,13 @@ class UniqueCharactersCounterTest {
 
     @Test
     void shouldReturnUniqueSymbolsAndTheirQuantity() {
-        String ourSentence = "ab";
+        String sentence = "ababcb";
         Map<Character, Integer> map = new HashMap<>();
-        map.put('a', 1);
-        map.put('b', 1);
+        map.put('a', 2);
+        map.put('b', 3);
+        map.put('c', 1);
 
-        Map<Character, Integer> actual = uniqueCharactersCounter.showUniqueSymbolsAndTheirQuantity(ourSentence);
+        Map<Character, Integer> actual = uniqueCharactersCounter.calculateUniqueSymbolsAndTheirQuantity(sentence);
 
         assertEquals(map, actual);
     }
