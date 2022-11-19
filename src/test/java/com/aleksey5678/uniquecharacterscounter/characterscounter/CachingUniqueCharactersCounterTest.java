@@ -1,9 +1,7 @@
 package com.aleksey5678.uniquecharacterscounter.characterscounter;
 
-import com.aleksey5678.characterscounter.cache.CalculationResultCache;
-import com.aleksey5678.characterscounter.stringmodifier.MapToStringModifier;
-import com.aleksey5678.characterscounter.characterscounter.CachingUniqueCharactersCounter;
-import com.aleksey5678.characterscounter.characterscounter.UniqueCharactersCounter;
+import com.aleksey5678.uniquecharacterscounter.cache.CalculationResultCache;
+import com.aleksey5678.uniquecharacterscounter.stringformatter.MapToStringFormatter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -19,41 +17,41 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class CachingUniqueCharactersCounterTest {
     @Mock
-    private UniqueCharactersCounter uniqueCharactersCounterMock;
+    private UniqueCharactersCounter uniqueCharactersCounter;
     @Mock
-    private MapToStringModifier mapToStringModifierMock;
+    private MapToStringFormatter mapToStringFormatter;
     @Mock
-    private CalculationResultCache calculationResultCacheMock;
+    private CalculationResultCache calculationResultCache;
 
     @InjectMocks
     private CachingUniqueCharactersCounter cachingUniqueCharactersCounter;
 
-    private final String sentence = "a";
-    private final String expected = "a - 1";
+    private static final String SENTENCE = "a";
+    private static final String EXPECTED_RESULT = "a - 1";
 
     @Test
     void shouldUseCashedValueOnlyIfKeyIsInCache() {
-        when(calculationResultCacheMock.isCached(sentence)).thenReturn(true);
-        when(calculationResultCacheMock.getCachedValue(sentence)).thenReturn(expected);
+        when(calculationResultCache.isCached(SENTENCE)).thenReturn(true);
+        when(calculationResultCache.getCachedValue(SENTENCE)).thenReturn(EXPECTED_RESULT);
 
-        String result = cachingUniqueCharactersCounter.countUniqueCharactersOrGetFromCache(sentence);
+        String result = cachingUniqueCharactersCounter.countUniqueCharactersOrGetFromCache(SENTENCE);
 
-        assertEquals(expected, result);
-        verify(mapToStringModifierMock, never()).modify(anyMap());
-        verify(uniqueCharactersCounterMock, never()).calculateUniqueSymbolsAndTheirQuantity(sentence);
-        verify(calculationResultCacheMock, never()).save(sentence, expected);
+        assertEquals(EXPECTED_RESULT, result);
+        verify(mapToStringFormatter, never()).formattingMapToString(anyMap());
+        verify(uniqueCharactersCounter, never()).calculateUniqueCharactersAndTheirQuantity(SENTENCE);
+        verify(calculationResultCache, never()).save(SENTENCE, EXPECTED_RESULT);
     }
 
     @Test
     void shouldCalculateAndPutInCacheIfKeyIsNotCached() {
-        when(calculationResultCacheMock.isCached(sentence)).thenReturn(false);
-        when(mapToStringModifierMock.modify(anyMap())).thenReturn(expected);
+        when(calculationResultCache.isCached(SENTENCE)).thenReturn(false);
+        when(mapToStringFormatter.formattingMapToString(anyMap())).thenReturn(EXPECTED_RESULT);
 
-        String result = cachingUniqueCharactersCounter.countUniqueCharactersOrGetFromCache(sentence);
+        String result = cachingUniqueCharactersCounter.countUniqueCharactersOrGetFromCache(SENTENCE);
 
-        assertEquals(expected, result);
-        verify(calculationResultCacheMock).save(sentence, result);
-        verify(uniqueCharactersCounterMock).calculateUniqueSymbolsAndTheirQuantity(sentence);
-        verify(calculationResultCacheMock, never()).getCachedValue(sentence);
+        assertEquals(EXPECTED_RESULT, result);
+        verify(calculationResultCache).save(SENTENCE, result);
+        verify(uniqueCharactersCounter).calculateUniqueCharactersAndTheirQuantity(SENTENCE);
+        verify(calculationResultCache, never()).getCachedValue(SENTENCE);
     }
 }

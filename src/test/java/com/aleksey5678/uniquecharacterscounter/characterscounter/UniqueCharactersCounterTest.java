@@ -1,12 +1,12 @@
 package com.aleksey5678.uniquecharacterscounter.characterscounter;
 
-import com.aleksey5678.characterscounter.characterscounter.UniqueCharactersCounter;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UniqueCharactersCounterTest {
     private final UniqueCharactersCounter uniqueCharactersCounter = new UniqueCharactersCounter();
@@ -14,13 +14,24 @@ class UniqueCharactersCounterTest {
     @Test
     void shouldReturnUniqueSymbolsAndTheirQuantity() {
         String sentence = "ababcb";
-        Map<Character, Integer> quantityOfSymbolsRepetitionsBySymbol = new HashMap<>();
-        quantityOfSymbolsRepetitionsBySymbol.put('a', 2);
-        quantityOfSymbolsRepetitionsBySymbol.put('b', 3);
-        quantityOfSymbolsRepetitionsBySymbol.put('c', 1);
+        Map<Character, Integer> expectedQuantityOfSymbolsRepetitionsBySymbol = new HashMap<>();
+        expectedQuantityOfSymbolsRepetitionsBySymbol.put('a', 2);
+        expectedQuantityOfSymbolsRepetitionsBySymbol.put('b', 3);
+        expectedQuantityOfSymbolsRepetitionsBySymbol.put('c', 1);
 
-        Map<Character, Integer> actual = uniqueCharactersCounter.calculateUniqueSymbolsAndTheirQuantity(sentence);
+        Map<Character, Integer> actualQuantityOfSymbolsRepetitionsBySymbol =
+                uniqueCharactersCounter.calculateUniqueCharactersAndTheirQuantity(sentence);
 
-        assertEquals(quantityOfSymbolsRepetitionsBySymbol, actual);
+        assertEquals(expectedQuantityOfSymbolsRepetitionsBySymbol, actualQuantityOfSymbolsRepetitionsBySymbol);
     }
+
+    @Test
+    void shouldReturnNullPointerExceptionIfParameterIsNull() {
+        String message = assertThrows(NullPointerException.class,
+                () -> uniqueCharactersCounter.calculateUniqueCharactersAndTheirQuantity(null)).getMessage();
+        String expectedMessageIfParameterIsNull = "parameter can`t be Null";
+
+        assertEquals(expectedMessageIfParameterIsNull, message);
+    }
+
 }

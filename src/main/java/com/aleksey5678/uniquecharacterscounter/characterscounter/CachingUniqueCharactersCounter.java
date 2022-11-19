@@ -1,17 +1,18 @@
-package com.aleksey5678.characterscounter.characterscounter;
+package com.aleksey5678.uniquecharacterscounter.characterscounter;
 
-import com.aleksey5678.characterscounter.cache.CalculationResultCache;
-import com.aleksey5678.characterscounter.stringmodifier.MapToStringModifier;
+import com.aleksey5678.uniquecharacterscounter.cache.CalculationResultCache;
+import com.aleksey5678.uniquecharacterscounter.stringformatter.MapToStringFormatter;
 
 public class CachingUniqueCharactersCounter {
     private final UniqueCharactersCounter uniqueCharactersCounter;
-    private final MapToStringModifier mapToStringModifier;
+    private final MapToStringFormatter mapToStringFormatter;
     private final CalculationResultCache calculationResultCache;
 
     public CachingUniqueCharactersCounter
-            (UniqueCharactersCounter uniqueCharactersCounter, MapToStringModifier mapToStringModifier, CalculationResultCache calculationResultCache) {
+            (UniqueCharactersCounter uniqueCharactersCounter, MapToStringFormatter mapToStringFormatter,
+             CalculationResultCache calculationResultCache) {
         this.uniqueCharactersCounter = uniqueCharactersCounter;
-        this.mapToStringModifier = mapToStringModifier;
+        this.mapToStringFormatter = mapToStringFormatter;
         this.calculationResultCache = calculationResultCache;
     }
 
@@ -22,7 +23,7 @@ public class CachingUniqueCharactersCounter {
             return calculationResultCache.getCachedValue(sentence);
         } else {
             String resultOfCalculations =
-                    mapToStringModifier.modify(uniqueCharactersCounter.calculateUniqueSymbolsAndTheirQuantity(sentence));
+                    mapToStringFormatter.formattingMapToString(uniqueCharactersCounter.calculateUniqueCharactersAndTheirQuantity(sentence));
             calculationResultCache.save(sentence, resultOfCalculations);
             return resultOfCalculations;
         }

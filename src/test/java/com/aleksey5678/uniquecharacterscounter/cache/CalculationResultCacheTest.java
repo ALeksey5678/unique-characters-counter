@@ -1,6 +1,5 @@
 package com.aleksey5678.uniquecharacterscounter.cache;
 
-import com.aleksey5678.characterscounter.cache.CalculationResultCache;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -11,40 +10,42 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CalculationResultCacheTest {
     @Mock
-    private Map<String, String> resultOfCalculationsBySentenceMock;
+    private Map<String, String> resultOfCalculationsBySentence;
 
     @InjectMocks
-    CalculationResultCache newCalculationResultCache;
-    private final String sentence = "a";
-    private final String resultOfCalculations = "a - 1";
+    private CalculationResultCache calculationResultCache;
+
+    private static final String SENTENCE = "a";
+    private static final String EXPECTED_RESULT_OF_CALCULATIONS = "a - 1";
 
     @Test
     void shouldReturnTrueIfCached() {
-        when(resultOfCalculationsBySentenceMock.containsKey(sentence)).thenReturn(true);
+        when(resultOfCalculationsBySentence.containsKey(SENTENCE)).thenReturn(true);
 
-        boolean cached = newCalculationResultCache.isCached(sentence);
+        boolean isCached = calculationResultCache.isCached(SENTENCE);
 
-        assertTrue(cached);
+        assertTrue(isCached);
     }
 
     @Test
     void shouldReturnCachedValueIfKeyIsInCache() {
-        when(resultOfCalculationsBySentenceMock.get(sentence)).thenReturn(resultOfCalculations);
+        when(resultOfCalculationsBySentence.get(SENTENCE)).thenReturn(EXPECTED_RESULT_OF_CALCULATIONS);
 
-        String cachedValue = newCalculationResultCache.getCachedValue(sentence);
+        String cachedValue = calculationResultCache.getCachedValue(SENTENCE);
 
-        assertEquals(resultOfCalculations, cachedValue);
+        assertEquals(EXPECTED_RESULT_OF_CALCULATIONS, cachedValue);
     }
 
     @Test
     void shouldPutKeyAndValueInCache() {
-        newCalculationResultCache.save(sentence, resultOfCalculations);
-        verify(resultOfCalculationsBySentenceMock).put(sentence, resultOfCalculations);
+        calculationResultCache.save(SENTENCE, EXPECTED_RESULT_OF_CALCULATIONS);
+        verify(resultOfCalculationsBySentence, times(1)).put(SENTENCE, EXPECTED_RESULT_OF_CALCULATIONS);
     }
 }
