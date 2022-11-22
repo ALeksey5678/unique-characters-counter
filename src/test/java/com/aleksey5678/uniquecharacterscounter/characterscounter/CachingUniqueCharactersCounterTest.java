@@ -39,7 +39,7 @@ class CachingUniqueCharactersCounterTest {
         String result = cachingUniqueCharactersCounter.countUniqueCharactersOrGetFromCache(SENTENCE);
 
         assertEquals(EXPECTED_RESULT, result);
-        verify(mapToStringFormatter, never()).formattingMapToString(anyMap());
+        verify(mapToStringFormatter, never()).formatMapToString(anyMap());
         verify(uniqueCharactersCounter, never()).calculateUniqueCharactersAndTheirQuantity(SENTENCE);
         verify(calculationResultCache, never()).save(SENTENCE, EXPECTED_RESULT);
     }
@@ -47,7 +47,7 @@ class CachingUniqueCharactersCounterTest {
     @Test
     void shouldCalculateAndPutInCacheIfKeyIsNotCached() {
         when(calculationResultCache.isCached(SENTENCE)).thenReturn(false);
-        when(mapToStringFormatter.formattingMapToString(anyMap())).thenReturn(EXPECTED_RESULT);
+        when(mapToStringFormatter.formatMapToString(anyMap())).thenReturn(EXPECTED_RESULT);
 
         String result = cachingUniqueCharactersCounter.countUniqueCharactersOrGetFromCache(SENTENCE);
 

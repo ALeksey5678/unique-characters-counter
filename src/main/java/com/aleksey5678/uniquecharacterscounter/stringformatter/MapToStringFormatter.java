@@ -3,9 +3,9 @@ package com.aleksey5678.uniquecharacterscounter.stringformatter;
 import java.util.Map;
 
 public class MapToStringFormatter {
-    private static final String FORMATTING_PATTERN = "%s - %s";
+    private static final String FORMAT_PATTERN = "%s - %s";
 
-    public String formattingMapToString(Map<Character, Integer> quantityOfUniqueCharactersByCharacter) {
+    public String formatMapToString(Map<Character, Integer> quantityOfUniqueCharactersByCharacter) {
 
         if (quantityOfUniqueCharactersByCharacter == null) {
             throw new IllegalArgumentException ("quantityOfUniqueCharactersByCharacter can`t be Null");
@@ -13,7 +13,7 @@ public class MapToStringFormatter {
 
         StringBuilder stringBuilder = new StringBuilder();
         quantityOfUniqueCharactersByCharacter.forEach((character, quantity) ->
-                stringBuilder.append(String.format(FORMATTING_PATTERN, character, quantity)).append(System.lineSeparator()));
+                stringBuilder.append(String.format(FORMAT_PATTERN, character, quantity)).append(System.lineSeparator()));
         return stringBuilder.toString().trim();
     }
 }

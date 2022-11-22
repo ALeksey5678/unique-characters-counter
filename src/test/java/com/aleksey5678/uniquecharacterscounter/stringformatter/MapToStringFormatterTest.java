@@ -18,16 +18,16 @@ class MapToStringFormatterTest {
         Map<Character, Integer> quantityOfSymbolRepetitionsBySymbol = new HashMap<>();
         quantityOfSymbolRepetitionsBySymbol.put('a', 1);
 
-        String modify = mapToStringFormatter.formattingMapToString(quantityOfSymbolRepetitionsBySymbol);
+        String modify = mapToStringFormatter.formatMapToString(quantityOfSymbolRepetitionsBySymbol);
 
         assertEquals(expectedResult, modify);
     }
 
     @Test
-    void returnNullPointerExceptionIfParameterIsNull() {
-        String message = assertThrows(IllegalArgumentException.class,
-                () -> mapToStringFormatter.formattingMapToString(null)).getMessage();
+    void shouldThrowIllegalArgumentExceptionIfParameterIsNull() {
         String expectedMessageIfMapIsNull = "quantityOfUniqueCharactersByCharacter can`t be Null";
+        String message = assertThrows(IllegalArgumentException.class,
+                () -> mapToStringFormatter.formatMapToString(null)).getMessage();
 
         assertEquals(expectedMessageIfMapIsNull, message);
     }

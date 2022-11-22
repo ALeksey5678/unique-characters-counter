@@ -23,7 +23,7 @@ public class CachingUniqueCharactersCounter {
             return calculationResultCache.getCachedValue(sentence);
         } else {
             String resultOfCalculations =
-                    mapToStringFormatter.formattingMapToString(uniqueCharactersCounter.calculateUniqueCharactersAndTheirQuantity(sentence));
+                    mapToStringFormatter.formatMapToString(uniqueCharactersCounter.calculateUniqueCharactersAndTheirQuantity(sentence));
             calculationResultCache.save(sentence, resultOfCalculations);
             return resultOfCalculations;
         }
