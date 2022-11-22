@@ -12,7 +12,7 @@ class MapToStringFormatterTest {
     private final MapToStringFormatter mapToStringFormatter = new MapToStringFormatter();
 
     @Test
-    void shouldModifyQuantityOfSymbolRepetitions() {
+    void shouldFormatQuantityOfSymbolRepetitions() {
         String expectedResult = "a - 1";
 
         Map<Character, Integer> quantityOfSymbolRepetitionsBySymbol = new HashMap<>();
@@ -26,9 +26,20 @@ class MapToStringFormatterTest {
     @Test
     void shouldThrowIllegalArgumentExceptionIfParameterIsNull() {
         String expectedMessageIfMapIsNull = "quantityOfUniqueCharactersByCharacter can`t be Null";
+
         String message = assertThrows(IllegalArgumentException.class,
                 () -> mapToStringFormatter.formatMapToString(null)).getMessage();
 
         assertEquals(expectedMessageIfMapIsNull, message);
+    }
+    @Test
+    void shouldReturnEmptyStringIfMapIsEmpty(){
+        String expectedMessage="";
+
+        Map<Character, Integer> quantityOfSymbolRepetitionsBySymbol = new HashMap<>();
+
+        String modify = mapToStringFormatter.formatMapToString(quantityOfSymbolRepetitionsBySymbol);
+
+        assertEquals(expectedMessage, modify);
     }
 }

@@ -28,6 +28,7 @@ class UniqueCharactersCounterTest {
     @Test
     void shouldThrowIllegalArgumentExceptionIfParameterIsNull() {
         String expectedMessageIfSentenceIsNull = "sentence can`t be Null";
+
         String message = assertThrows(IllegalArgumentException.class,
                 () -> uniqueCharactersCounter.calculateUniqueCharactersAndTheirQuantity(null)).getMessage();
 
