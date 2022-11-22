@@ -25,10 +25,10 @@ class MapToStringFormatterTest {
 
     @Test
     void returnNullPointerExceptionIfParameterIsNull() {
-        String message = assertThrows(NullPointerException.class,
+        String message = assertThrows(IllegalArgumentException.class,
                 () -> mapToStringFormatter.formattingMapToString(null)).getMessage();
-        String expectedMessageIfParameterIsNull = "parameter can`t be Null";
+        String expectedMessageIfMapIsNull = "quantityOfUniqueCharactersByCharacter can`t be Null";
 
-        assertEquals(expectedMessageIfParameterIsNull, message);
+        assertEquals(expectedMessageIfMapIsNull, message);
     }
 }

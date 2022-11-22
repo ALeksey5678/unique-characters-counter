@@ -9,16 +9,16 @@ public class UniqueCharactersCounter {
     public Map<Character, Integer> calculateUniqueCharactersAndTheirQuantity(String sentence) {
 
         if (sentence == null) {
-            throw new NullPointerException("parameter can`t be Null");
+            throw new IllegalArgumentException("sentence can`t be Null");
         }
 
         Map<Character, Integer> numberOfCharacterRepetitionsByUniqueCharacter = new HashMap<>();
 
-        for (char characters : sentence.toCharArray()) {
-            numberOfCharacterRepetitionsByUniqueCharacter.computeIfPresent(characters,
-                    (character, integer) -> integer + ONE);
+        for (char character : sentence.toCharArray()) {
+            numberOfCharacterRepetitionsByUniqueCharacter.computeIfPresent(character,
+                    (symbol, integer) -> integer + ONE);
 
-            numberOfCharacterRepetitionsByUniqueCharacter.putIfAbsent(characters, ONE);
+            numberOfCharacterRepetitionsByUniqueCharacter.putIfAbsent(character, ONE);
         }
         return numberOfCharacterRepetitionsByUniqueCharacter;
     }

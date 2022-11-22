@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyMap;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,6 +29,7 @@ class CachingUniqueCharactersCounterTest {
 
     private static final String SENTENCE = "a";
     private static final String EXPECTED_RESULT = "a - 1";
+     private final static int WANTED_NUMBER_OF_INVOCATIONS = 1;
 
     @Test
     void shouldUseCashedValueOnlyIfKeyIsInCache() {
@@ -50,8 +52,9 @@ class CachingUniqueCharactersCounterTest {
         String result = cachingUniqueCharactersCounter.countUniqueCharactersOrGetFromCache(SENTENCE);
 
         assertEquals(EXPECTED_RESULT, result);
-        verify(calculationResultCache).save(SENTENCE, result);
-        verify(uniqueCharactersCounter).calculateUniqueCharactersAndTheirQuantity(SENTENCE);
+
+        verify(calculationResultCache,times(WANTED_NUMBER_OF_INVOCATIONS)).save(SENTENCE, result);
+        verify(uniqueCharactersCounter,times(WANTED_NUMBER_OF_INVOCATIONS)).calculateUniqueCharactersAndTheirQuantity(SENTENCE);
         verify(calculationResultCache, never()).getCachedValue(SENTENCE);
     }
 }

@@ -8,9 +8,9 @@ public class CachingUniqueCharactersCounter {
     private final MapToStringFormatter mapToStringFormatter;
     private final CalculationResultCache calculationResultCache;
 
-    public CachingUniqueCharactersCounter
-            (UniqueCharactersCounter uniqueCharactersCounter, MapToStringFormatter mapToStringFormatter,
-             CalculationResultCache calculationResultCache) {
+    public CachingUniqueCharactersCounter(UniqueCharactersCounter uniqueCharactersCounter,
+                                          MapToStringFormatter mapToStringFormatter,
+                                          CalculationResultCache calculationResultCache) {
         this.uniqueCharactersCounter = uniqueCharactersCounter;
         this.mapToStringFormatter = mapToStringFormatter;
         this.calculationResultCache = calculationResultCache;

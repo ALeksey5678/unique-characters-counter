@@ -24,6 +24,8 @@ class CalculationResultCacheTest {
 
     private static final String SENTENCE = "a";
     private static final String EXPECTED_RESULT_OF_CALCULATIONS = "a - 1";
+    private final static int WANTED_NUMBER_OF_INVOCATIONS = 1;
+
 
     @Test
     void shouldReturnTrueIfCached() {
@@ -46,6 +48,6 @@ class CalculationResultCacheTest {
     @Test
     void shouldPutKeyAndValueInCache() {
         calculationResultCache.save(SENTENCE, EXPECTED_RESULT_OF_CALCULATIONS);
-        verify(resultOfCalculationsBySentence, times(1)).put(SENTENCE, EXPECTED_RESULT_OF_CALCULATIONS);
+        verify(resultOfCalculationsBySentence, times(WANTED_NUMBER_OF_INVOCATIONS)).put(SENTENCE, EXPECTED_RESULT_OF_CALCULATIONS);
     }
 }
