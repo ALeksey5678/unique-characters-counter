@@ -8,7 +8,7 @@ public class MapToStringFormatter {
     public String formatMapToString(Map<Character, Integer> quantityOfUniqueCharactersByCharacter) {
 
         if (quantityOfUniqueCharactersByCharacter == null) {
-            throw new IllegalArgumentException ("quantityOfUniqueCharactersByCharacter can`t be Null");
+            throw new IllegalArgumentException("quantityOfUniqueCharactersByCharacter can`t be Null");
         }
 
         StringBuilder stringBuilder = new StringBuilder();

@@ -32,9 +32,10 @@ class MapToStringFormatterTest {
 
         assertEquals(expectedMessageIfMapIsNull, message);
     }
+
     @Test
-    void shouldReturnEmptyStringIfMapIsEmpty(){
-        String expectedMessage="";
+    void shouldReturnEmptyStringIfMapIsEmpty() {
+        String expectedMessage = "";
 
         Map<Character, Integer> quantityOfSymbolRepetitionsBySymbol = new HashMap<>();
 

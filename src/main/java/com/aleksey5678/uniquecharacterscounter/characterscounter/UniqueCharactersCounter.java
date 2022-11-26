@@ -16,7 +16,7 @@ public class UniqueCharactersCounter {
 
         for (char character : sentence.toCharArray()) {
             numberOfCharacterRepetitionsByUniqueCharacter.computeIfPresent(character,
-                    (symbol, integer) -> integer + ONE);
+                    (symbol, quantity) -> quantity + ONE);
 
             numberOfCharacterRepetitionsByUniqueCharacter.putIfAbsent(character, ONE);
         }
